@@ -1,0 +1,124 @@
+﻿@model IEnumerable<GitDemo.Models.Student>
+
+@{
+    ViewBag.Title = "Students";
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Content/jquery.table2excel.js"></script>
+<h2>Students</h2>
+@Html.ActionLink("Print Whole Page", "PrintData", null, new { @class = "btn btn-block btn-primary" })
+
+<input type="button" name="name" value="Print Table" class="btn btn-danger btn-block" id="buttonXL" />
+
+<table class="table" id="table2excel">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Department.DeptName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Class)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegNo)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.DeptName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Class)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegNo)
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+
+<script>
+
+    $("#buttonXL").click(function () {
+
+        $("#table2excel").table2excel({
+            exclude: ".noExl",
+            name: "Worksheet Name",
+            filename: "StudentData"
+        });
+
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<script type="text/javascript">
+
+        function PrintDiv() {
+            var divToPrint = document.getElementById('printarea');
+            var popupWin = window.open('', '_blank', 'width=300,height=400,location=no,left=200px');
+            popupWin.document.open();
+            popupWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</html>');
+            popupWin.document.close();
+        }
+    </script>*@
+@*<script language="javascript" type="text/javascript">
+        function CallPrint() {
+            var prtContent = document.getElementsByClassName("table");
+            var WinPrint = window.open('', '', 'letf=0,top=0,width=800,height=100,toolbar=0,scrollbars=0,status=0,dir=ltr');
+            WinPrint.document.write(prtContent.innerHTML);
+            WinPrint.document.close();
+            WinPrint.focus();
+            WinPrint.print();
+            WinPrint.close();
+            prtContent.innerHTML = strOldOne;
+        }
+    </script>*@
+@*<script>
+        function printdiv(printpage) {
+            var headstr = "<html><head><title></title></head><body>";
+            var footstr = "</body>";
+            var newstr = document.all.item(printpage).outerHTML;
+            var oldstr = document.body.outerHTML;
+            document.body.innerHTML = headstr + newstr + footstr;
+            window.print();
+            document.body.innerHTML = oldstr;
+            return false;
+        }
+
+    </script>*@

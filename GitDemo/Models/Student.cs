@@ -17,6 +17,7 @@ namespace GitDemo.Models
         public string Name { get; set; }
         public Gender Gender { get; set; }
         public string Class { get; set; }
+        public string Batch { get; set; }
         public string RegNo { get; set; }
         [ForeignKey("Department")]
         public int DepartmentId { get; set; }

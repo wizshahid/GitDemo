@@ -8,7 +8,7 @@ namespace GitDemo.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult TabView()
         {
             return View();
         }
@@ -24,6 +24,10 @@ namespace GitDemo.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+        public ActionResult GetMap()
+        {
             return View();
         }
     }

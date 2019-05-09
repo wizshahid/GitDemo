@@ -1,0 +1,129 @@
+﻿<style>
+    /* Set height of body and the document to 100% to enable "full page tabs" */
+    body, html {
+        height: 100%;
+        margin: 0;
+        font-family: Arial;
+    }
+
+    /* Style tab links */
+    .tablink {
+        background-color: #555;
+        color: white;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        font-size: 17px;
+        width: 25%;
+    }
+
+        .tablink:hover {
+            background-color: #777;
+        }
+
+    /* Style the tab content (and add height:100% for full page content) */
+    .tabcontent {
+        color: white;
+        display: none;
+        padding: 100px 20px;
+        height: 100%;
+    }
+
+    #Personal {
+        background-color: red;
+    }
+
+    #Experience {
+        background-color: green;
+    }
+
+    #Contact {
+        background-color: blue;
+    }
+
+    #Education {
+        background-color: orange;
+    }
+</style>
+
+<button class="tablink" onclick="openPage('Personal', this, 'red')">Personal</button>
+<button class="tablink" onclick="openPage('Experience', this, 'green')" id="defaultOpen">Experience</button>
+<button class="tablink" onclick="openPage('Contact', this, 'blue')">Contact</button>
+<button class="tablink" onclick="openPage('Education', this, 'orange')">Education</button>
+<form>
+    <div id="Personal" class="tabcontent">
+        <h3>Personal</h3>
+        <div class="form-group">
+            <label class="control-label">Name</label>
+            <input type="text" name="Name" class="form-control" value="" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Parentage</label>
+            <input type="text" name="Parentage" class="form-control" value="" />
+        </div>
+    </div>
+
+    <div id="Experience" class="tabcontent">
+        <h3>Experience</h3>
+        <div class="form-group">
+            <label class="control-label">Work Experience</label>
+            <input type="text" name="WorkExperience" class="form-control" value="" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Designation</label>
+            <input type="text" name="Designation" class="form-control" value="" />
+        </div>
+    </div>
+
+    <div id="Contact" class="tabcontent">
+        <h3>Contact</h3>
+        <div class="form-group">
+            <label class="control-label">Phone Number</label>
+            <input type="tel" name="PhoneNumber" class="form-control" value="" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Email</label>
+            <input type="email" name="Email" class="form-control" value="" />
+        </div>
+    </div>
+
+    <div id="Education" class="tabcontent">
+        <h3>Education</h3>
+        <div class="form-group">
+            <label class="control-label">University</label>
+            <input type="text" name="University" class="form-control" value="" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Qualification</label>
+            <input type="text" name="Qualification" class="form-control" value="" />
+        </div>
+    </div>
+</form>
+
+<script>
+    function openPage(pageName, elmnt, color) {
+        // Hide all elements with class="tabcontent" by default */
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Remove the background color of all tablinks/buttons
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].style.backgroundColor = "";
+        }
+
+        // Show the specific tab content
+        document.getElementById(pageName).style.display = "block";
+
+        // Add the specific color to the button used to open the tab content
+        elmnt.style.backgroundColor = color;
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+</script>

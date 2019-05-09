@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Rotativa;
 using System.Web.Mvc;
 
 namespace GitDemo.Controllers
@@ -31,6 +32,7 @@ namespace GitDemo.Controllers
 
         public ActionResult AddDepartment()
         {
+            
             return View();
         }
 
@@ -42,5 +44,15 @@ namespace GitDemo.Controllers
             return View();
         }
 
+        public ActionResult Students()
+        {
+          
+            return View(db.Students.Include("Department"));
+        }
+        public ActionResult PrintData()
+        {
+            var report = new ActionAsPdf("Students");
+            return report;
+        }
     }
 }

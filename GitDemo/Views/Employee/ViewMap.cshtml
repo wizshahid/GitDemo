@@ -1,0 +1,91 @@
+﻿@model GitDemo.Models.Employee
+
+@{
+    ViewBag.Title = "ViewMap";
+}
+
+<h2>ViewMap</h2>
+
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Department.DeptName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department.DeptName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </dt>
+
+        <dd id="Lat">
+            @Model.Latitude
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </dt>
+
+        <dd id="Long">
+            @Model.Longitude
+        </dd>
+
+    </dl>
+</div>
+<h2 style="background-color: Yellow;color: Blue; text-align: center; font-style: oblique">Google Map </h2>
+<fieldset>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <div id="googleMap" style="height:400px;width:100%;"></div>
+    <script>
+        $(document).ready(function () {
+            var lat = $("#Lat").text();
+            var long = $("#Long").text();
+            myMap();
+            function myMap() {
+                var myCenter = new google.maps.LatLng(lat, long);
+                var mapProp = { center: myCenter, zoom: 12, scrollwheel: false, draggable: true, mapTypeId: google.maps.MapTypeId.ROADMAP };
+                var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                var marker = new google.maps.Marker({ position: myCenter });
+                marker.setMap(map);
+            }
+        })
+       
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAADFIHNApddyTO4qtoQowByf-0z3nulLc&callback=myMap"></script>
+</fieldset>
+<footer>
+    <p style="background-color: Yellow; font-weight: bold; color:blue; text-align: center; font-style: oblique">© @DateTime.Now.ToLocalTime()</p> @*Add Date Time*@
+</footer>
